@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Space direction="vertical" align="end">
+      <a-input :placeholder="usernameHint" />
+      <a-input :placeholder="passwordHint" />
+      <Space>
+        <img :src="imageUrl" width="28" height="28" />
+        <Button src>{{ $t("user.signup") }}</Button>
+        <Button type="primary">{{ $t("user.login") }}</Button>
+      </Space>
+    </Space>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Button, Space } from "ant-design-vue";
+import i18n from "./i18n";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Button,
+    Space,
+  },
+  data: () => {
+    return {
+      imageUrl: i18n.t("user.image_url"),
+      usernameHint: i18n.t("user.username_placeholder"),
+      passwordHint: i18n.t("user.password_placeholder"),
+    };
+  },
+};
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 60px;
+  margin: 0;
+  min-height: 100%;
+  background-color: #f0f0f0;
+}
+
+.ant-space-item input {
+  width: 240px;
 }
 </style>
